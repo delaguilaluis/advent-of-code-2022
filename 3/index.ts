@@ -29,7 +29,7 @@ const priorities = repeated.map((r) => {
       return r + 58;
     }
 
-    return r
+    return r;
   });
 
 const sum = priorities.reduce((acc, val) => acc + val, 0);

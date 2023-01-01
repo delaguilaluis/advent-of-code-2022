@@ -19,7 +19,7 @@ const reducer = (acc, val) => {
 
 const aggregation = inventory.reduce(reducer, [0]);
 
-aggregation.sort((a, b) => a < b ? 1 : -1)
+aggregation.sort((a, b) => a < b ? 1 : -1);
 
 const [top1, top2, top3] = aggregation;
 
