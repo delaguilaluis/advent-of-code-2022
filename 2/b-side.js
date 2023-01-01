@@ -1,6 +1,27 @@
 const fs = require('fs');
 const path = require('path');
 
+const moves = {
+  rock: "A",
+  paper: "B",
+  scissors: "C",
+};
+
+const outcomes = {
+  lose: "X",
+  draw: "Y",
+  win: "Z",
+};
+
+const points = {
+  rock: 1,
+  paper: 2,
+  scissors: 3,
+  lose: 0,
+  draw: 3,
+  win: 6,
+};
+
 fs.readFile(path.join(__dirname, 'input.txt'), 'utf8', (err, data) => {
   if (err) {
     console.error(err);
@@ -8,46 +29,46 @@ fs.readFile(path.join(__dirname, 'input.txt'), 'utf8', (err, data) => {
   }
 
   const results = data.split('\n').map((m) => m.split(" "))
-    .map(([oponent, result]) => {
-      if (oponent === "A") {
-        if (result === "X") {
-          return 3 + 0;
+    .map(([oponent, outcome]) => {
+      if (oponent === moves.rock) {
+        if (outcome === outcomes.lose) {
+          return points.scissors + points.lose;
         }
 
-        if (result === "Y") {
-          return 1 + 3;
+        if (outcome === outcomes.draw) {
+          return points.rock + points.draw;
         }
 
-        if (result === "Z") {
-          return 2 + 6;
-        }
-      }
-
-      if (oponent === "B") {
-        if (result === "X") {
-          return 1 + 0;
-        }
-
-        if (result === "Y") {
-          return 2 + 3;
-        }
-
-        if (result === "Z") {
-          return 3 + 6;
+        if (outcome === outcomes.win) {
+          return points.paper + points.win;
         }
       }
 
-      if (oponent === "C") {
-        if (result === "X") {
-          return 2 + 0;
+      if (oponent === moves.paper) {
+        if (outcome === outcomes.lose) {
+          return points.rock + points.lose;
         }
 
-        if (result === "Y") {
-          return 3 + 3;
+        if (outcome === outcomes.draw) {
+          return points.paper + points.draw;
         }
 
-        if (result === "Z") {
-          return 1 + 6;
+        if (outcome === outcomes.win) {
+          return points.scissors + points.win;
+        }
+      }
+
+      if (oponent === moves.scissors) {
+        if (outcome === outcomes.lose) {
+          return points.paper + points.lose;
+        }
+
+        if (outcome === outcomes.draw) {
+          return points.scissors + points.draw;
+        }
+
+        if (outcome === outcomes.win) {
+          return points.rock + points.win;
         }
       }
     });
