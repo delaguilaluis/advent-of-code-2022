@@ -1,3 +1,2 @@
 # Input files for Advent of Code puzzles
-*/**/input.txt
-*/**/test.txt
+*.txt
