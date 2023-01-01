@@ -18,19 +18,9 @@ const repeated = rucksacks.map((rucksack) => {
 });
 
 const priorities = repeated.map((r) => {
-  if (!r) {
-    return 0;
-  } else {
-    return r.charCodeAt(0) - 96;
-  }
+  return r ? r.charCodeAt(0) - 96 : 0;
 })
-  .map((r) => {
-    if (r < 0) {
-      return r + 58;
-    }
-
-    return r;
-  });
+  .map((r) => r < 0 ? r + 58 : r);
 
 const sum = priorities.reduce((acc, val) => acc + val, 0);
 
